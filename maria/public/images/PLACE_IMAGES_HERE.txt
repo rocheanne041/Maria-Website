@@ -1,0 +1,10 @@
+Save your images here with these exact filenames:
+
+  hero-bride.jpg       — Bride at the balcony overlooking the water (2nd image)
+  toile-bg.png         — Blue-tinted toile / botanical illustration (3rd image)
+  bar-photo.jpg        — Outdoor bar setup at the wedding (4th image)
+  portfolio-1.jpg      — Alissa & William invitation suite (5th image)
+  portfolio-2.jpg      — The Crowe Suite invitations (6th image)
+  portfolio-3.jpg      — Lottes & Dellasandro invitations (7th image)
+  maria-portrait.jpg   — Maria Gossard black & white portrait (8th image)
+  estate-bg.png        — Watercolor house / estate illustration (9th image)
