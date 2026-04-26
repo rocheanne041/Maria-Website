@@ -86,9 +86,7 @@ export default function App() {
             <a href="#" className="btn-gold">Schedule Your Private Consultation</a>
           </motion.div>
         </div>
-        <motion.div className="scroll-indicator" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2, duration: 1 }}>
-          <motion.div className="scroll-line" animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }} />
-        </motion.div>
+
       </section>
 
       {/* ── SECTION 2 — ANNOUNCEMENT ── */}
