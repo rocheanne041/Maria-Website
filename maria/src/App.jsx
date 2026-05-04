@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import './App.css'
 
 /* ── SVG Icons ── */
@@ -8,6 +8,24 @@ const PhoneIcon  = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="n
 const PinIcon    = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
 const IgIcon     = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
 const FbIcon     = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+
+/* ── Hamburger Icon ── */
+const HamburgerIcon = ({ open }) => (
+  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+    {open ? (
+      <>
+        <line x1="3" y1="3" x2="19" y2="19" />
+        <line x1="19" y1="3" x2="3" y2="19" />
+      </>
+    ) : (
+      <>
+        <line x1="3" y1="6" x2="19" y2="6" />
+        <line x1="3" y1="11" x2="19" y2="11" />
+        <line x1="3" y1="16" x2="19" y2="16" />
+      </>
+    )}
+  </svg>
+)
 
 /* ── Portfolio card — gold-framed, caption below ── */
 function PortfolioCard({ src, alt, name, index }) {
@@ -38,12 +56,29 @@ function PortfolioCard({ src, alt, name, index }) {
 
 export default function App() {
   const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  // Close menu on resize if going back to desktop
+  useEffect(() => {
+    const onResize = () => { if (window.innerWidth > 768) setMenuOpen(false) }
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
+
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [menuOpen])
+
+  const navColor = scrolled ? '#553B3D' : 'white'
+  const closeMenu = () => setMenuOpen(false)
 
   return (
     <div className="site">
@@ -55,21 +90,65 @@ export default function App() {
         animate={{ y: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
       >
-        <ul className="nav-left">
-          <li><a href="#" style={{ color: scrolled ? '#553B3D' : 'white' }}>Home</a></li>
-          <li><a href="#" style={{ color: scrolled ? '#553B3D' : 'white' }}>Wedding</a></li>
-          <li><a href="#" style={{ color: scrolled ? '#553B3D' : 'white' }}>Shop</a></li>
+        {/* Desktop left links */}
+        <ul className="nav-left nav-desktop">
+          <li><a href="#" style={{ color: navColor }}>Home</a></li>
+          <li><a href="#" style={{ color: navColor }}>Wedding</a></li>
+          <li><a href="#" style={{ color: navColor }}>Shop</a></li>
         </ul>
+
+        {/* Logo — always visible */}
         <div className="nav-logo">
-          <span className="logo-name" style={{ color: scrolled ? '#553B3D' : 'white' }}>Maria Gossard</span>
+          <span className="logo-name" style={{ color: navColor }}>Maria Gossard</span>
           <span className="logo-sub" style={{ color: scrolled ? '#B08A4F' : 'rgba(255,255,255,0.80)' }}>Designs</span>
         </div>
-        <ul className="nav-right">
-          <li><a href="#" style={{ color: scrolled ? '#553B3D' : 'white' }}>Portfolio</a></li>
-          <li><a href="#" style={{ color: scrolled ? '#553B3D' : 'white' }}>About</a></li>
-          <li><a href="#" style={{ color: scrolled ? '#553B3D' : 'white' }}>Contact</a></li>
+
+        {/* Desktop right links */}
+        <ul className="nav-right nav-desktop">
+          <li><a href="#" style={{ color: navColor }}>Portfolio</a></li>
+          <li><a href="#" style={{ color: navColor }}>About</a></li>
+          <li><a href="#" style={{ color: navColor }}>Contact</a></li>
         </ul>
+
+        {/* Mobile hamburger */}
+        <button
+          className="hamburger-btn"
+          onClick={() => setMenuOpen(o => !o)}
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          style={{ color: navColor }}
+        >
+          <HamburgerIcon open={menuOpen} />
+        </button>
       </motion.div>
+
+      {/* ── MOBILE MENU OVERLAY ── */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            className="mobile-menu"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.35, ease: 'easeOut' }}
+          >
+            <nav className="mobile-nav">
+              <a href="#" onClick={closeMenu}>Home</a>
+              <a href="#" onClick={closeMenu}>Wedding</a>
+              <a href="#" onClick={closeMenu}>Shop</a>
+              <a href="#" onClick={closeMenu}>Portfolio</a>
+              <a href="#" onClick={closeMenu}>About</a>
+              <a href="#" onClick={closeMenu}>Contact</a>
+            </nav>
+            <div className="mobile-menu-footer">
+              <span className="mobile-menu-brand">Maria Gossard Designs</span>
+              <div className="mobile-menu-socials">
+                <a href="#" className="social-circle" aria-label="Instagram"><IgIcon /></a>
+                <a href="#" className="social-circle" aria-label="Facebook"><FbIcon /></a>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* ── HERO ── */}
       <section className="hero">

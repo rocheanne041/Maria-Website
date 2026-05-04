@@ -815,3 +815,360 @@ footer {
   color: rgba(255, 255, 255, 0.40);
   letter-spacing: 0.08em;
 }
+
+/* ============================================================
+   MOBILE MENU
+============================================================ */
+.hamburger-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  line-height: 0;
+  z-index: 200;
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 150;
+  background-color: rgba(243, 239, 232, 0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 40px 40px;
+}
+
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  margin-bottom: 48px;
+}
+
+.mobile-nav a {
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.mobile-nav a:hover { color: var(--gold); }
+
+.mobile-menu-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  border-top: 1px solid rgba(176, 138, 79, 0.28);
+  padding-top: 28px;
+  width: 100%;
+}
+
+.mobile-menu-brand {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.mobile-menu-socials {
+  display: flex;
+  gap: 14px;
+}
+
+/* Hide desktop nav items on mobile */
+.nav-desktop { display: flex; }
+
+/* ============================================================
+   RESPONSIVE — TABLET  (≤ 1024px)
+============================================================ */
+@media (max-width: 1024px) {
+  .navbar { padding: 24px 40px; }
+  .navbar-scrolled { padding: 16px 40px; }
+
+  .section-portfolio { padding: 80px 40px 90px; }
+  .section-meet-maria { padding: 80px 40px 90px; }
+  .section-cta { padding: 90px 40px 100px; }
+  .section-final-quote { padding: 100px 40px; }
+
+  footer { padding: 60px 40px 0; }
+
+  .maria-arch-frame { width: 240px; }
+  .maria-layout { gap: 40px; }
+}
+
+/* ============================================================
+   RESPONSIVE — TABLET PORTRAIT  (≤ 768px)
+============================================================ */
+@media (max-width: 768px) {
+  /* ── Navbar ── */
+  .nav-desktop { display: none; }
+  .hamburger-btn { display: flex; }
+
+  .navbar {
+    padding: 20px 24px;
+    justify-content: space-between;
+  }
+  .navbar-scrolled { padding: 14px 24px; }
+
+  .nav-logo { order: 0; }
+  .hamburger-btn { order: 1; }
+
+  .logo-name { font-size: 17px; }
+  .logo-sub  { font-size: 7.5px; letter-spacing: 0.32em; }
+
+  /* ── Hero ── */
+  .hero { min-height: 100svh; }
+
+  .hero-content {
+    bottom: 10%;
+    left: 0;
+    right: 0;
+    padding: 0 24px;
+    max-width: 100%;
+  }
+
+  .hero-content h1 { font-size: clamp(32px, 7vw, 48px); }
+
+  .hero-content p {
+    font-size: 13px;
+    max-width: 100%;
+  }
+
+  .hero-content p br { display: none; }
+
+  .scroll-indicator { display: none; }
+
+  /* ── Announcement ── */
+  .section-announcement { padding: 60px 20px; }
+
+  .announcement-box {
+    padding: 48px 28px;
+    max-width: 100%;
+  }
+
+  .announcement-box h2 { font-size: clamp(22px, 5vw, 32px); }
+
+  .announcement-box h2 br { display: none; }
+
+  .announcement-box p br { display: none; }
+
+  .btn-side-line { width: 32px; }
+
+  /* ── Quote Bar ── */
+  .section-quote-bar { min-height: 60vh; }
+
+  .quote-bar-overlay {
+    padding: 44px 28px;
+    width: 90%;
+    max-width: 100%;
+  }
+
+  .quote-bar-overlay blockquote br { display: none; }
+
+  /* ── Portfolio ── */
+  .section-portfolio { padding: 70px 24px 80px; }
+
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    max-width: 100%;
+  }
+
+  /* Show first 2 cards; keep 3rd full-width */
+  .portfolio-card:last-child {
+    grid-column: 1 / -1;
+    max-width: 340px;
+    margin: 0 auto;
+  }
+
+  /* ── Meet Maria ── */
+  .section-meet-maria { padding: 70px 24px 80px; }
+
+  .maria-layout {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    text-align: center;
+  }
+
+  .maria-photo-wrap {
+    justify-content: center;
+  }
+
+  .maria-arch-frame { width: 200px; }
+
+  .maria-arch-circle {
+    bottom: -12px;
+    right: calc(50% - 108px);
+  }
+
+  .maria-text {
+    padding: 32px 24px;
+    text-align: left;
+  }
+
+  .meet-maria-inner { max-width: 100%; }
+
+  /* ── CTA ── */
+  .section-cta { padding: 70px 24px 80px; }
+
+  .section-cta p br { display: none; }
+
+  /* ── Final Quote ── */
+  .section-final-quote { padding: 80px 24px; }
+
+  .section-final-quote blockquote br { display: none; }
+
+  /* ── Footer ── */
+  footer { padding: 56px 24px 0; }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-bottom: 40px;
+  }
+
+  .footer-connect { text-align: left; }
+
+  .footer-contact-row { justify-content: flex-start; }
+
+  .footer-socials { justify-content: flex-start; }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+    padding: 20px 0 24px;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — MOBILE  (≤ 480px)
+============================================================ */
+@media (max-width: 480px) {
+  /* ── Navbar ── */
+  .navbar { padding: 16px 18px; }
+  .navbar-scrolled { padding: 12px 18px; }
+  .logo-name { font-size: 15px; letter-spacing: 0.18em; }
+  .logo-sub  { font-size: 6.5px; letter-spacing: 0.28em; }
+
+  /* ── Hero ── */
+  .hero-content { padding: 0 18px; bottom: 8%; }
+  .hero-content h1 { font-size: clamp(28px, 8vw, 40px); margin-bottom: 14px; }
+  .hero-content p  { font-size: 12px; margin-bottom: 24px; }
+  .btn-gold { padding: 13px 22px; font-size: 9.5px; }
+
+  /* ── Announcement ── */
+  .section-announcement { padding: 50px 16px; min-height: unset; }
+  .announcement-box { padding: 36px 20px; }
+  .announcement-box h2 { font-size: clamp(20px, 5.5vw, 28px); margin-bottom: 14px; }
+  .announcement-box p  { font-size: 12px; margin-bottom: 28px; }
+  .flex-center-gap { gap: 10px; }
+  .btn-side-line { display: none; }
+
+  /* ── Quote Bar ── */
+  .section-quote-bar { min-height: 50vh; }
+  .quote-bar-overlay { padding: 36px 20px; width: 94%; }
+  .quote-bar-overlay blockquote { font-size: clamp(16px, 4vw, 20px); }
+
+  /* ── Portfolio ── */
+  .section-portfolio { padding: 56px 16px 64px; }
+  .portfolio-grid { grid-template-columns: 1fr; gap: 24px; }
+  .portfolio-card:last-child {
+    grid-column: auto;
+    max-width: 100%;
+    margin: 0;
+  }
+  .section-portfolio h2 { font-size: clamp(34px, 8vw, 48px); }
+
+  /* ── Meet Maria ── */
+  .section-meet-maria { padding: 56px 16px 64px; }
+  .maria-arch-frame { width: 170px; }
+  .maria-arch-circle {
+    width: 76px;
+    height: 76px;
+    right: calc(50% - 97px);
+  }
+  .maria-text { padding: 24px 18px; }
+  .maria-text p { font-size: clamp(16px, 4vw, 20px); margin-bottom: 20px; }
+  .maria-signature { font-size: 24px; }
+  .meet-maria-heading h2,
+  .meet-maria-inner h2 { font-size: clamp(34px, 8vw, 48px); }
+  .meet-maria-heading { margin-bottom: 36px; }
+
+  /* ── CTA ── */
+  .section-cta { padding: 56px 16px 64px; }
+  .section-cta h2 { font-size: clamp(28px, 7vw, 40px); }
+  .section-cta p { font-size: 12px; }
+
+  /* ── Final Quote ── */
+  .section-final-quote { padding: 60px 16px; }
+  .section-final-quote blockquote { font-size: clamp(18px, 4.5vw, 24px); }
+
+  /* ── Footer ── */
+  footer { padding: 48px 16px 0; }
+  .footer-brand h3 { font-size: 28px; }
+  .footer-tagline { font-size: 11px; }
+  .footer-grid { gap: 32px; }
+}
+
+/* ============================================================
+   RESPONSIVE — SMALL MOBILE  (≤ 360px)
+============================================================ */
+@media (max-width: 360px) {
+  .logo-name { font-size: 13px; }
+  .hero-content h1 { font-size: 26px; }
+  .btn-gold { font-size: 9px; padding: 12px 18px; }
+  .announcement-box { padding: 28px 16px; }
+  .quote-bar-overlay { padding: 28px 16px; width: 96%; }
+  .maria-arch-frame { width: 150px; }
+  .footer-brand h3 { font-size: 24px; }
+  .footer-contact-row a,
+  .footer-contact-row span { font-size: 11px; }
+}
+
+/* ============================================================
+   IOS / ANDROID SAFE AREA & TOUCH FIXES
+============================================================ */
+/* Support iPhone notch / Dynamic Island */
+@supports (padding: env(safe-area-inset-bottom)) {
+  footer {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .mobile-menu {
+    padding-top: max(80px, calc(60px + env(safe-area-inset-top)));
+    padding-bottom: max(40px, calc(24px + env(safe-area-inset-bottom)));
+  }
+}
+
+/* Prevent tap callout on interactive elements */
+a, button {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+/* Smooth scrolling for all devices */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Ensure images never overflow */
+img { max-width: 100%; height: auto; }
+
