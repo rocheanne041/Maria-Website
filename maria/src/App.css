@@ -957,6 +957,9 @@ footer {
     max-width: 100%;
   }
 
+  /* Push CTA button down to chest level */
+  .hero-content .btn-gold { margin-top: 56px; }
+
   .hero-content p br { display: none; }
 
   .scroll-indicator { display: none; }
@@ -1078,6 +1081,7 @@ footer {
   .hero-content { padding: 200px 18px 0; }
   .hero-content h1 { font-size: clamp(30px, 8.5vw, 42px); margin-bottom: 14px; }
   .hero-content p  { font-size: 12px; margin-bottom: 24px; }
+  .hero-content .btn-gold { margin-top: 48px; }
   .btn-gold { padding: 13px 22px; font-size: 9.5px; }
 
   /* ── Announcement ── */
