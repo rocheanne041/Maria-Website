@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import CollectionsPage from './CollectionsPage'
 import './App.css'
 
 /* ── SVG Icons ── */
@@ -57,6 +58,7 @@ function PortfolioCard({ src, alt, name, index }) {
 export default function App() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [view, setView] = useState('home') // 'home' | 'collections'
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80)
@@ -71,14 +73,30 @@ export default function App() {
     return () => window.removeEventListener('resize', onResize)
   }, [])
 
-  // Prevent body scroll when menu is open
+  // Prevent body scroll when menu is open or on collections page
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    document.body.style.overflow = (menuOpen) ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [menuOpen])
 
+  // Scroll to top when switching views
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [view])
+
   const navColor = scrolled ? '#553B3D' : 'white'
   const closeMenu = () => setMenuOpen(false)
+  const goCollections = (e) => { e.preventDefault(); setMenuOpen(false); setView('collections') }
+  const goHome = () => setView('home')
+
+  // Show Collections page
+  if (view === 'collections') {
+    return (
+      <AnimatePresence mode="wait">
+        <CollectionsPage key="collections" onBack={goHome} />
+      </AnimatePresence>
+    )
+  }
 
   return (
     <div className="site">
@@ -218,7 +236,7 @@ export default function App() {
 
         <motion.div className="portfolio-view-all" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, delay: 0.4 }}>
           <div className="view-all-line" />
-          <a href="#" className="view-all-link">View All Collections</a>
+          <a href="#" className="view-all-link" onClick={goCollections}>View All Collections</a>
           <div className="view-all-line" />
         </motion.div>
       </section>
