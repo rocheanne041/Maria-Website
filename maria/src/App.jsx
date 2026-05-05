@@ -149,6 +149,21 @@ export default function App() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.35, ease: 'easeOut' }}
           >
+            {/* Close button inside overlay */}
+            <motion.button
+              className="mobile-menu-close"
+              onClick={closeMenu}
+              aria-label="Close menu"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.18, duration: 0.3 }}
+            >
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round">
+                <line x1="2" y1="2" x2="16" y2="16"/>
+                <line x1="16" y1="2" x2="2" y2="16"/>
+              </svg>
+            </motion.button>
+
             <nav className="mobile-nav">
               <a href="#" onClick={closeMenu}>Home</a>
               <a href="#" onClick={closeMenu}>Wedding</a>

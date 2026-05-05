@@ -1093,6 +1093,32 @@ footer {
   padding: 80px 40px 40px;
 }
 
+/* ── Aesthetic close button ── */
+.mobile-menu-close {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(176, 138, 79, 0.5);
+  background: transparent;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.mobile-menu-close:hover {
+  background-color: var(--gold);
+  color: var(--white);
+  border-color: var(--gold);
+  transform: scale(1.08);
+}
+.mobile-menu-close:active { transform: scale(0.96); }
+
 .mobile-nav {
   display: flex;
   flex-direction: column;
