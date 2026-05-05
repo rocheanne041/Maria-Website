@@ -162,7 +162,7 @@ export default function App() {
             Where paper, color, and celebratory environments<br />become lasting works of art.
           </motion.p>
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.1, duration: 0.8 }}>
-            <a href="#" className="btn-gold">Schedule Your Private Consultation</a>
+            <a href="#" className="btn-gold">Book a Consultation</a>
           </motion.div>
         </div>
 
@@ -262,7 +262,7 @@ export default function App() {
           <span className="section-label">Let&apos;s Begin</span>
           <h2>Your love story awaits</h2>
           <p>We invite you to begin the conversation. Share your vision and<br />let us craft something extraordinary together.</p>
-          <a href="#" className="btn-gold">Schedule Your Private Consultation</a>
+          <a href="#" className="btn-gold">Book a Consultation</a>
         </motion.div>
       </section>
 
